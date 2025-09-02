@@ -59,6 +59,7 @@ body {
     
     .mobile-only {
         display: block;
+        font-size: 2rem;
     }
 }
 
@@ -994,8 +995,8 @@ a{
         display: none;
     }
     .pg-logo h1{
-        margin-left: -100px;
-        font-size: 0.8rem;
+        margin-left: -150px;
+        font-size: 1.8rem;
     }
     #popupBody{
         display: flex;
@@ -1021,8 +1022,8 @@ a{
     }
 
     .pg-logo h1{
-        margin-left: 0;
-        font-size: 0.8rem;
+        margin-left: -100px;
+        font-size: 1.8rem;
     }
     
     .stats-grid {
@@ -1921,7 +1922,18 @@ footer {
     .community-forum {
         min-width: 100%; 
     }
-
+    .hostel-title{
+        font-size: 1.5rem;
+    }
+    .hostel-location{
+        font-size: 1rem;
+    }
+    .forum-stats {
+        grid-template-columns: 1fr;
+    }
+    .hostel-actions button{
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2007,11 +2019,32 @@ footer {
         padding: 0 0.5rem;
         width: 1000px;
     }
+    .hostel-title{
+        font-size: 1.5rem;
+    }
+    .hostel-location{
+        font-size: 1rem;
+    }
+    .forum-stats {
+        grid-template-columns: 1fr;
+    }
+    .hostel-actions button{
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 480px) {
+    .hostel-title{
+        font-size: 1.5rem;
+    }
+    .hostel-location{
+        font-size: 1rem;
+    }
     .forum-stats {
         grid-template-columns: 1fr;
+    }
+    .hostel-actions button{
+        font-size: 1rem;
     }
     .listings-content {
         width: 1000px;
@@ -2040,7 +2073,7 @@ footer {
         font-size: 0.5rem;
     }
     .pg-logo h1{
-        font-size: 0.8rem;
+        font-size: 1.5rem;
     }
     .community-forum {
         width: 1000px; 
