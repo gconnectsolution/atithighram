@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGStay - Find Your Perfect PG & Hostel Stay</title>
+    <link rel="stylesheet" href="./hostels.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <!-- Main header -->
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <a href="javascript:location.reload()">
+                        <div class="logo-text">
+                            <h1>atithighram</h1>
+                            <p>Find Your Perfect Stay</p>
+                        </div>
+                        </a>
+                    </div>
+
+                    <div class="pg-logo">
+                        <!--<img src = './logo.png' class = ''/>-->
+                        <a href = 'javascript:location.reload()'><h1>GConnect Solutions</h1></a>
+                    </div>
+
+                    <!-- Search bar -->
+                    <div class="search-bar desktop-only">
+                        <button class="btn btn-primary" onclick="performSearch()">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="searchInput" placeholder="Search by location, landmark, or property name">
+                        </div>
+                    </div>
+
+                    <!-- Navigation 
+                    <nav class="nav desktop-only">
+                        <a href="#" class="nav-link">Home</a>
+                        <a href="#" class="nav-link">PG</a>
+                        <a href="#" class="nav-link">Hostels</a>
+                        <a href="#" class="nav-link">About</a>
+                        <a href="#" class="nav-link">Contact</a>
+                    </nav>-->
+
+                    <!-- Auth buttons 
+                    <div class="auth-buttons desktop-only">
+                        <button class="btn btn-outline">Login</button>
+                        <button class="btn btn-primary">Sign Up</button>
+                    </div>-->
+
+                    <!-- Mobile menu button 
+                    <button class="mobile-menu-btn mobile-only" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>-->
+                </div>
+
+                <!-- Mobile search 
+                <div class="mobile-search mobile-only">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Search by location...">
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Find Your Perfect
+                    PG & Hostel Stay
+                </h1>
+                <p class="hero-description">
+                    Discover comfortable, affordable, and safe accommodations near you. 
+                    From luxury PGs to budget-friendly hostels, find your ideal home away from home.
+                </p>
+            </div>
+
+            <!-- Quick stats 
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Properties Listed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Cities Covered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Happy Tenants</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.8</div>
+                    <div class="stat-label">
+                        <i class="fas fa-star star-icon"></i>
+                        Average Rating
+                    </div>
+                </div>
+            </div>-->
+
+            <!-- Quick action buttons 
+            <div class="hero-actions">
+                <button class="btn btn-primary btn-large">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Browse by Location
+                </button>
+                <button class="btn btn-outline btn-large">
+                    <i class="fas fa-users"></i>
+                    For Students
+                </button>
+                <button class="btn btn-outline btn-large">
+                    <i class="fas fa-calendar"></i>
+                    For Working Professionals
+                </button>
+            </div>-->
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-layout">
+            
+                <!-- Filter Sidebar 
+                <aside class="filters-sidebar desktop-only">
+                    <div class="filters-header">
+                        <div class="filters-title">
+                            <i class="fas fa-filter"></i>
+                            <h3>Filters</h3>
+                        </div>
+                        <button class="btn btn-ghost" onclick="clearAllFilters()">Clear All</button>
+                    </div>
+
+                    <-- Active Filters
+                    <div class="active-filters" id="activeFilters" style="display: none;">
+                        <h4>Active Filters</h4>
+                        <div class="filter-tags" id="filterTags"></div>
+                    </div>
+
+                    <-- Location Filter
+                    <div class="filter-section">
+                        <label class="filter-label">Location</label>
+                        <select id="locationFilter" class="filter-select" onchange="applyFilters()">
+                            <option value="">Select Location</option>
+                            <option value="Koramangala">Koramangala</option>
+                            <option value="Whitefield">Whitefield</option>
+                            <option value="Electronic City">Electronic City</option>
+                            <option value="HSR Layout">HSR Layout</option>
+                            <option value="Marathahalli">Marathahalli</option>
+                            <option value="Jayanagar">Jayanagar</option>
+                            <option value="Indiranagar">Indiranagar</option>
+                            <option value="Malleswaram">Malleswaram</option>
+                        </select>
+                    </div>
+
+                    <-- Property Type Filter
+                    <div class="filter-section">
+                        <label class="filter-label">Property Type</label>
+                        <select id="typeFilter" class="filter-select" onchange="applyFilters()">
+                            <option value="">Select Type</option>
+                            <option value="PG">PG</option>
+                            <option value="Hostel">Hostel</option>
+                        </select>
+                    </div>
+
+                    <-- Price Range Filter 
+                    <div class="filter-section">
+                        <label class="filter-label">Price Range (per month)</label>
+                        <div class="range-slider-container">
+                            <input type="range" id="minPrice" min="3000" max="50000" value="5000" step="1000" oninput="updatePriceRange()">
+                            <input type="range" id="maxPrice" min="3000" max="50000" value="25000" step="1000" oninput="updatePriceRange()">
+                            <div class="range-values">
+                                <span id="minPriceValue">₹5,000</span>
+                                <span id="maxPriceValue">₹25,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <-- Amenities Filter 
+                    <div class="filter-section">
+                        <label class="filter-label">Amenities</label>
+                        <div class="amenities-list">
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="WiFi" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                WiFi
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="AC" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                AC
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Meals" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Meals
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Laundry" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Laundry
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Parking" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Parking
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Gym" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Gym
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Security" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Security
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="Housekeeping" onchange="applyFilters()">
+                                <span class="checkmark"></span>
+                                Housekeeping
+                            </label>
+                        </div>
+                    </div>
+                </aside>-->
+
+                <!-- Main Content Area -->
+                <div class="listings-content">
+                    <!-- Controls Header -->
+                    <div class="listings-header">
+                        <div class="listings-info">
+                            <h2 id="resultsCount">6 PG's Found</h2>
+                            <p>Best PGs and Hostels in Bangalore</p>
+                        </div>
+
+                        <div class="listings-controls">
+                            <!-- Mobile Filter Button-->
+                            <button class="btn btn-outline mobile-filter-btn mobile-only" onclick="toggleMobileFilters()">
+                                <i class="fas fa-sliders-h"></i>
+                                Filters
+                            </button> 
+
+                            <!-- View Mode -->
+                            <div class="view-mode-toggle desktop-only">
+                                <button type="button" class="view-btn active" onclick="setViewMode('grid')" data-mode="grid">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button type="button" class="view-btn" onclick="setViewMode('list')" data-mode="list">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hostel Listings -->
+                    <div class="hostels-grid" id="hostelsGrid">
+                        <!-- Hostel cards will be generated by JavaScript -->
+                    </div>
+
+                    <!-- Load More Button 
+                    <div class="load-more-section">
+                        <button class="btn btn-outline btn-large">Load More Properties</button>
+                    </div>-->
+                </div>
+                    
+                <section id="community" class="community-forum">
+                    <div class="forum-header">
+                        <h2>Community Forum</h2>
+                        <p>Connect with fellow residents and get answers to your questions about PGs and hostels. Share experiences, ask questions, and help others make informed decisions.</p>
+                    </div>
+                    <div class="container-sec">
+                        <!-- Header -->
+                        
+
+                        <!-- Stats
+                        <div class="forum-stats">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number">1,248</span>
+                                    <span class="stat-label">Total Questions</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-comment-dots"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number">3,567</span>
+                                    <span class="stat-label">Total Answers</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number">892</span>
+                                    <span class="stat-label">Active Members</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number">94%</span>
+                                    <span class="stat-label">Answer Rate</span>
+                                </div>
+                            </div>
+                        </div>-->
+                        
+
+                        <!-- Forum Content -->
+                        <div class="forum-content">
+                            <!-- Main Forum Content -->
+                            <div class="forum-main">
+                                <!-- Mobile Controls -->
+                                <div class="forum-mobile-controls mobile-only">
+                                    <button class="btn btn-primary" onclick="openQuestionModal()">
+                                        <i class="fas fa-plus"></i>
+                                        Ask Question
+                                    </button>
+                                    <!--<button class="btn btn-outline" onclick="toggleForumFilters()">
+                                        <i class="fas fa-filter"></i>
+                                        Filters
+                                    </button>-->
+                                </div>
+
+                                <!-- Results Header -->
+                                <div class="forum-results-header">
+                                    <h3 id="forumResultsCount">No Questions Found</h3>
+                                    <div class="forum-filter-info">
+                                        <!--<i class="fas fa-filter"></i>
+                                        <span id="activeFilterInfo">All Categories</span>-->
+                                    </div>
+                                </div>
+
+                                <!-- Questions List -->
+                                <div class="forum-questions" id="forumQuestions">
+                                    <!-- Questions will be generated by JavaScript -->
+                                </div>
+
+                                <!-- No Results 
+                                <div class="forum-no-results" id="forumNoResults" style="display: none;">
+                                    <i class="fas fa-comments"></i>
+                                    <h3>No questions found</h3>
+                                    <p>Be the first to ask a question in this category!</p>
+                                    <button class="btn btn-primary" onclick="openQuestionModal()">
+                                        <i class="fas fa-plus"></i>
+                                        Ask First Question
+                                    </button>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+            </div>
+        </div>
+    </main>
+
+        <!-- Community Forum Section -->
+<div id="toast" class="toast"></div>
+
+
+    <!-- Question Modal -->
+    <div class="modal" id="questionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Ask a Question</h3>
+                <button class="close-btn" onclick="closeQuestionModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="questionForm">
+                    <div class="form-group">
+                        <label for="yourName">Your Name</label>
+                        <input type="text" id="yourName" placeholder="Enter Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="questionTitle">Question Title</label>
+                        <input type="text" id="questionTitle" placeholder="What would you like to know?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="questionContent">Details</label>
+                        <textarea id="questionContent" rows="4" placeholder="Provide more details about your question..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <!--<div class="form-group">
+                            <label for="questionCategory">Category</label>
+                            <select id="questionCategory">
+                                <option value="">Select category</option>
+                                <option value="Food & Meals">Food & Meals</option>
+                                <option value="Amenities">Amenities</option>
+                                <option value="Safety & Security">Safety & Security</option>
+                                <option value="Pricing">Pricing</option>
+                                <option value="Location & Transport">Location & Transport</option>
+                                <option value="Recommendations">Recommendations</option>
+                                <option value="Room & Facilities">Room & Facilities</option>
+                                <option value="Rules & Policies">Rules & Policies</option>
+                            </select>
+                        </div>-->
+                        <div class="form-group">
+                            <label for="questionLocation">Location</label>
+                            <select id="questionLocation">
+                                <option value="">Select location</option>
+                                <option value="Koramangala">Koramangala</option>
+                                <option value="Whitefield">Whitefield</option>
+                                <option value="Electronic City">Electronic City</option>
+                                <option value="HSR Layout">HSR Layout</option>
+                                <option value="Marathahalli">Marathahalli</option>
+                                <option value="Jayanagar">Jayanagar</option>
+                                <option value="Indiranagar">Indiranagar</option>
+                                <option value="BTM Layout">BTM Layout</option>
+                                <option value="Koramangala">Mahadevapura</option>
+                                <option value="Whitefield">Doddakanelli</option>
+                                <option value="Electronic City">Nagavara</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="questionPgName">PG/Hostel Name (Optional)</label>
+                        <input type="text" id="questionPgName" placeholder="e.g., Modern PG Stay">
+                    </div>
+                    <div class="form-group">
+                        <label for="questionTags">Tags (comma separated)</label>
+                        <input type="text" id="questionTags" placeholder="e.g., food, wifi, safety">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeQuestionModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitQuestion()">
+                    <i class="fas fa-paper-plane"></i>
+                    Post Question
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Forum Filters Modal -->
+    <div class="mobile-forum-filters-modal" id="mobileForumFilters">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Forum Filters</h3>
+                <button class="close-btn" onclick="toggleForumFilters()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="forum-filter">
+                    <label class="filter-label">Search Questions</label>
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="mobileForumSearch" placeholder="Search questions..." onkeyup="syncMobileSearch()">
+                    </div>
+                </div>
+                <!-- Sort By -->
+                <select id="sortBy" class="sort-select" onchange="sortListings()">
+                    <option value="featured">Sort By</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                </select>
+                
+                <div class="forum-filter">
+                    <label class="filter-label">Category</label>
+                    <select id="mobileForumCategory" class="filter-select" onchange="syncMobileFilters()">
+                        <option value="">All Categories</option>
+                        <option value="Food & Meals">Food & Meals</option>
+                        <option value="Amenities">Amenities</option>
+                        <option value="Safety & Security">Safety & Security</option>
+                        <option value="Pricing">Pricing</option>
+                        <option value="Location & Transport">Location & Transport</option>
+                        <option value="Recommendations">Recommendations</option>
+                        <option value="Room & Facilities">Room & Facilities</option>
+                        <option value="Rules & Policies">Rules & Policies</option>
+                    </select>
+                </div>
+                
+                <div class="forum-filter">
+                    <label class="filter-label">Location</label>
+                    <select id="mobileForumLocation" class="filter-select" onchange="syncMobileFilters()">
+                        <option value="">All Locations</option>
+                        <option value="Koramangala">Koramangala</option>
+                        <option value="Whitefield">Whitefield</option>
+                        <option value="Electronic City">Electronic City</option>
+                        <option value="HSR Layout">HSR Layout</option>
+                        <option value="Marathahalli">Marathahalli</option>
+                        <option value="Jayanagar">Jayanagar</option>
+                        <option value="Indiranagar">Indiranagar</option>
+                        <option value="Mahadevapura">Mahadevapura</option>
+                        <option value="Doddakannelli">Doddakannelli</option>
+                        <option value="Nagavara">Nagavara</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="clearForumFilters()">Clear All</button>
+                <button class="btn btn-primary" onclick="toggleForumFilters()">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Filters Modal -->
+    <div class="mobile-filters-modal" id="mobileFiltersModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Filters</h3>
+                <button class="close-btn" onclick="toggleMobileFilters()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Same filter content as sidebar -->
+                <div class="filter-section">
+                    <label class="filter-label">Location</label>
+                    <select id="mobileLocationFilter" class="filter-select" onchange="applyFilters()">
+                        <option value="Koramangala">Koramangala</option>
+                        <option value="Whitefield">Whitefield</option>
+                        <option value="Electronic City">Electronic City</option>
+                        <option value="HSR Layout">HSR Layout</option>
+                        <option value="Marathahalli">Marathahalli</option>
+                        <option value="Jayanagar">Jayanagar</option>
+                        <option value="Mahadevapura">Mahadevapura</option>
+                        <option value="Doddakannelli">Doddakannelli</option>
+                        <option value="Nagavara">Nagavara</option>
+                    </select>
+                </div>
+                <!--<div class = 'filter-section'>
+                <label class = 'filter-label'>Sort By</label>
+                <select id="sortBy" class="filter-select" onchange="sortListings()">
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                </select>
+                </div>
+
+                <div class = "filter-section">
+                    <label class= 'filter-label'>Gender</label>
+                    <select id="mobileForumCategory" class="filter-select" onchange="syncMobileFilters()">
+                        <option value="">Male</option>
+                        <option value="Food & Meals">Female</option>
+                    </select>
+                </div>-->
+
+                <div class="filter-section">
+                    <label class="filter-label">PG Type</label>
+                    <select id="mobileTypeFilter" class="filter-select" onchange="applyFilters()">
+                        <option value="Colive">COlive</option>
+                        <option value="Gents">Gents PG</option>
+                        <option value="Ladies">Ladies PG</option>
+                    </select>
+                </div>
+
+                <div class="filter-section">
+                    <label class="filter-label">Price Range (per month)</label>
+                    <div id="price-slider"></div>
+                    <div class="range-values">
+                        <span id="min-price">₹10,000</span> - 
+                        <span id="max-price">₹40,000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="clearAllFilters()">Clear All</button>
+                <button class="btn btn-primary" onclick="toggleMobileFilters()">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./hostels.js"></script>
+    <!-- Hostel Details Popup -->
+    <div id="hostelPopup" class="popup-container">
+    <div class="popup-content">
+        <div class="popup-header">
+        <h2 id="popupTitle"></h2>
+        <span class="popup-close" onclick="closePopup()">✖</span>
+        </div>
+        <div id="popupBody"></div>
+    </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 GConnect Solutions. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
