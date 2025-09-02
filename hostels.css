@@ -997,11 +997,23 @@ a{
         margin-left: -100px;
         font-size: 0.8rem;
     }
+    #popupBody{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
 }
 
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2rem;
+    }
+    #popupBody{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
     }
     
     .hero-description {
@@ -1057,6 +1069,12 @@ a{
 @media (max-width: 480px) {
     .container {
         padding: 0 0.5rem;
+    }
+    #popupBody{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
     }
     
     .top-bar {
