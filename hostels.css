@@ -993,6 +993,10 @@ a{
     .filters-sidebar {
         display: none;
     }
+    .pg-logo h1{
+        margin-left: -100px;
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1005,7 +1009,8 @@ a{
     }
 
     .pg-logo h1{
-        font-size: 1rem;
+        margin-left: 0;
+        font-size: 0.8rem;
     }
     
     .stats-grid {
@@ -1857,6 +1862,10 @@ footer {
 
 /* Responsive Design for Forum */
 @media (max-width: 1024px) {
+    body{
+        max-width: 100%;
+        max-height: 100%;
+   }
     .container {
         max-width: 1000px;
         margin: 0 0;
@@ -1894,10 +1903,7 @@ footer {
     .community-forum {
         min-width: 100%; 
     }
-    .container {
-        padding: 0 0.5rem;
-        width: 1000px;
-    }
+
 }
 
 @media (max-width: 768px) {
