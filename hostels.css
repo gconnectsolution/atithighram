@@ -37,6 +37,7 @@ body {
     background-color: var(--background);
     overflow-x: hidden;
     width: 100%;   
+    max-width: 100%;
     min-height: 100vh; 
 }
 
@@ -117,6 +118,7 @@ body {
     background-color: var(--background);
     border-bottom: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
+    width: 100%;
     max-width: 100%;
 }
 
@@ -1020,6 +1022,7 @@ a{
 }
 
 @media (max-width: 768px) {
+
     .hero-title {
         font-size: 2rem;
     }
@@ -1028,6 +1031,7 @@ a{
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+
     }
     
     .hero-description {
@@ -1109,6 +1113,7 @@ a{
     
     .main-content {
         padding: 1rem 0;
+        width: 100%;
         max-width: 100%;
     }
 }
@@ -1901,6 +1906,7 @@ footer {
 /* Responsive Design for Forum */
 @media (max-width: 1024px) {
     .container {
+        width: 100%;
         max-width: 100%;
         margin: 0 0;
         padding: 0 0.5rem;
@@ -1912,6 +1918,7 @@ footer {
         gap: 2rem;
     }
     .listings-content {
+        width: 100%;
         max-width: 100%;
     }
     .content-layout {
@@ -1921,13 +1928,16 @@ footer {
         gap: 2rem;
     }
     .question-card {
+        width: 100%;
         min-width: 100%;
     }
     footer {
+        width: 100%;
         max-width: 100%;
     }
     .forum-content {
         grid-template-columns: 1fr;
+        width: 100%;
         max-width: 100%;
     }
     
@@ -1935,9 +1945,11 @@ footer {
         display: none;
     }
     .community-forum {
+        width: 100%;
         min-width: 100%; 
     }
     .hostel-title{
+
         font-size: 1.5rem;
     }
     .hostel-location{
@@ -1953,15 +1965,17 @@ footer {
 
 @media (max-width: 768px) {
     .question-card {
-
+        width: 100%;
         min-width: 100%;
     }
     .forum-sidebar {
         position: static;   
         width: 100%;
+        max-width: 100%;
     }
     .popup-content {
         width: 95%;
+        max-width: 100%;
         height: 80%;
         padding: 15px;
     }
@@ -1975,16 +1989,19 @@ footer {
     }
     .forum-mobile-controls .btn {
         width: 100%;     
+        max-width: 100%;
     }
     .listings-content {
         width: 100%;      
-        max-width: 1000px;
+        max-width: 100%;
     }
     footer {
+        width: 100%;
         max-width: 100%;
     }
     .forum-content {
         grid-template-columns: 1fr;
+        width: 100%;
         max-width: 100%;
     }
     .content-layout {
@@ -2047,14 +2064,16 @@ footer {
     
     .modal .modal-footer .btn {
         width: 100%;
+
     }
     .community-forum {
         width: 100%; 
+        max-width: 100%;
     }
     .container {
         padding: 0 0.5rem;
         width: 100%;
-        max-width: 1000px;
+        max-width: 100%;
     }
     .hostel-title{
         font-size: 1.5rem;
@@ -2072,6 +2091,7 @@ footer {
 
 @media (max-width: 500px) {
     .modal .modal-content {
+        width: 100%;
         max-width: 95%;
         padding: 1rem;
     }
@@ -2094,11 +2114,12 @@ footer {
         max-width: 100%;
     }
     footer {
+        width: 100%;
         max-width: 100%;
     }
 
     .question-card {
-
+        width: 100%;
         max-width: 100%;
     }
     
@@ -2107,6 +2128,7 @@ footer {
     }
     
     .modal .modal-content {
+        width: 100%;
         max-width: none;
     }
 
