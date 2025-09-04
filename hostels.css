@@ -1905,6 +1905,16 @@ footer {
 
 /* Responsive Design for Forum */
 @media (max-width: 1024px) {
+    .logo-text h1 {
+        font-size: 0.8rem;
+    }
+
+    .logo-text p {
+        font-size: 0.5rem;
+    }
+    .pg-logo h1{
+        margin-left: 0px;
+    }
     .container {
         width: 100%;
         max-width: 100%;
@@ -2011,6 +2021,17 @@ footer {
         gap: 2rem;
     }
 
+    .logo-text h1 {
+        font-size: 0.8rem;
+    }
+
+    .logo-text p {
+        font-size: 0.8rem;
+    }
+    .pg-logo h1{
+        margin-left: 1px;
+    }
+
     .forum-header h2 {
         font-size: 1.5rem;
     }
@@ -2037,6 +2058,8 @@ footer {
     .stat-number {
         font-size: 1.25rem;
     }
+    
+
     
     .forum-results-header {
         flex-direction: column;
@@ -2133,14 +2156,15 @@ footer {
     }
 
     .logo-text h1 {
-        font-size: 0.8rem;
+        font-size: 0.5rem;
     }
 
     .logo-text p {
-        font-size: 0.5rem;
+        font-size: 0.2rem;
     }
     .pg-logo h1{
-        font-size: 1.5rem;
+        margin-left: 1px;
+        font-size: 0.8rem;
     }
     .community-forum {
         width: 100%; 
