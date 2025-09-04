@@ -1408,47 +1408,41 @@ function upvoteAnswer(answerId) {
     }
 }
 
-function submitAnswer(postId) {
-    const textarea = safeGet(`newAnswer-${postId}`);
-    const content = textarea ? textarea.value.trim() : '';
-    const nameInput = safeGet('name');
-    const authorName = nameInput ? nameInput.value.trim() : "Anonymous";
-    if (!content) return;
+async function submitAnswer(postId) {
+  const textarea = safeGet(`newAnswer-${postId}`);
+  const content = textarea ? textarea.value.trim() : '';
+  const nameInput = safeGet('name');
+  const authorName = nameInput ? nameInput.value.trim() : "Anonymous";
 
-    const newAnswer = {
-        id: 'a' + Date.now(),
+  if (!content) return;
 
-        content,
-        author: { name: authorName, avatar: "" },
-        timestamp: "Just now",
-        upvotes: 0,
-        isVerified: false,
-        helpful: false,
-        
-    };
-    
+  // ✅ Send to backend
+  const res = await fetch(`http://localhost:5000/questions/${postId}/answers`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: authorName,
+      content
+    })
+  });
 
-    if (!forumAnswers[postId]) forumAnswers[postId] = [];
-    forumAnswers[postId].push(newAnswer);
+  const data = await res.json();
+  console.log("Saved answer:", data);
 
-    const post = forumPosts.find(p => p.id === postId);
-    if (post) post.answers = (post.answers || 0) + 1;
+  // update UI
+  if (!forumAnswers[postId]) forumAnswers[postId] = [];
+  forumAnswers[postId].push(data);
+
+  const post = forumPosts.find(p => p.id === postId);
+  if (post) {
+    post.answers++;
     post.isAnswered = true;
-    //showForumNotification('answer')
-    if (post) {
-        post.answers = (post.answers || 0) + 1;
-        post.isAnswered = true;
+  }
 
-        // send name, question title, and answer content to toast
-        showToast("answer", authorName, post.title, newAnswer.content);
-    }
-    
-    saveForumToLocalStorage(); 
-
-    if (textarea) textarea.value = '';
-    renderForumPosts();
-    
+  textarea.value = '';
+  renderForumPosts();
 }
+
 
 // Question modal functions (guarded)
 function openQuestionModal() {
@@ -1461,55 +1455,47 @@ function closeQuestionModal() {
     const form = safeGet('questionForm');
     if (form) form.reset();
 }
-function submitQuestion() {
-    const titleEl = safeGet('questionTitle'), contentEl = safeGet('questionContent'),nameEl = safeGet('yourName');
-    if (!titleEl || !contentEl || !nameEl) return;
-    const title = titleEl.value.trim(), content = contentEl.value.trim();
-    //const category = safeValue('questionCategory', 'General');
-    const location = safeValue('questionLocation', 'Not specified');
-    const pgName = safeValue('questionPgName', '');
-    const tags = safeValue('questionTags', '');
-    const name = safeValue('yourName' ,'');
+async function submitQuestion() {
+  const titleEl = safeGet('questionTitle'), 
+        contentEl = safeGet('questionContent'),
+        nameEl = safeGet('yourName');
 
-    
-    
+  if (!titleEl || !contentEl || !nameEl) return;
+  const title = titleEl.value.trim();
+  const content = contentEl.value.trim();
+  const name = nameEl.value.trim();
 
-    if (!title || !content || !nameEl) {
-        alert('Please fill in the required fields');
-        return;
-    }
+  if (!title || !content || !name) {
+    alert('Please fill in all required fields');
+    return;
+  }
 
-    const newPost = {
-        id: Date.now().toString(),
-        title,
-        content,
-        author: {
-            name: name,
-            avatar: "",
-            joinDate: "2024-01-01"
-        },
-        //tags: category || "General",
-        location: location || "Not specified",
-        pgName: pgName || null,
-        timestamp: "Just now",
-        upvotes: 0,
-        answers: 0,
-        tags: tags ? tags.split(',').map(tag => tag.trim().toLowerCase()).filter(Boolean) : [],
-        isAnswered: false,
-        featured: false
-    };
+  // ✅ Send to backend
+  const res = await fetch("http://localhost:5000/questions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name,
+      title,
+      content,
+      location: safeValue('questionLocation', 'Not specified'),
+      pgName: safeValue('questionPgName', ''),
+      tags: safeValue('questionTags', '')
+    })
+  });
 
-    forumPosts.unshift(newPost);
-    filteredForumPosts = [...forumPosts];
-    applyForumFilters();
-    closeQuestionModal();
-    renderForumPosts();
-    updateForumResultsCount();
-    //showForumNotification('question')
-    showToast("question", name, newPost.content);
-    // save to localStorage
-    saveForumToLocalStorage();
+  const data = await res.json();
+  console.log("Saved question:", data);
+
+  // update UI
+  forumPosts.unshift(data);
+  filteredForumPosts = [...forumPosts];
+  applyForumFilters();
+  closeQuestionModal();
+  renderForumPosts();
+  updateForumResultsCount();
 }
+
 
 // Mobile forum helpers (guarded)
 function toggleForumFilters() {

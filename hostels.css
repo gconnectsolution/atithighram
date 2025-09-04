@@ -36,8 +36,8 @@ body {
     color: var(--foreground);
     background-color: var(--background);
     overflow-x: hidden;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;   
+    min-height: 100vh; 
 }
 
 .container {
@@ -193,8 +193,10 @@ a{
     text-decoration: none;
 }
 
-.pg-logo{
-    margin-left: 250px;
+.pg-logo {
+    margin-left: auto;   /* ✅ remove hardcoded 250px */
+    margin-right: auto;  /* ✅ centers it */
+    text-align: center;
 }
 
 .pg-logo a{
@@ -529,7 +531,8 @@ a{
 /* Listings Content */
 .listings-content {
     min-height: 600px;
-    width: 900px;
+    max-width: 1200px;
+    width: 100%;
 }
 
 .listings-header {
@@ -803,7 +806,8 @@ a{
 .hostel-footer {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
+    max-width: 100%;
 }
 
 .hostel-price {
@@ -912,6 +916,15 @@ a{
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes fadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
+}
+.popup-container.closing .popup-content {
+    animation: fadeOut 0.3s ease-in-out;
+}
+
+
 
 .hostel-actions {
     display: flex;
@@ -976,7 +989,7 @@ a{
 }
 
 .modal-footer .btn {
-    flex: 1;
+    flex: 2;
 }
 
 /* Load More Section */
@@ -1141,15 +1154,20 @@ a{
 .community-forum {
     background-color: var(--muted-color);
     padding: 2rem 2rem; 
-    height: 1000px; 
-    width: 400px; 
+    min-height: 600px;
+    max-height: 80vh;
+    width: 100%;
+    max-width: 400px;
     overflow-y: auto;
-    scrollbar-width: none; 
     border-width: 5px;
     border-style: solid;
     border-color: #000;
     box-sizing: border-box;
     border-radius: 12px;
+}
+
+.community-forum::-webkit-scrollbar {
+    display: none;
 }
 
 .forum-header {
@@ -1404,7 +1422,8 @@ a{
     border: 1px solid var(--border-color);
     border-radius: var(--radius);
     padding: 1rem;
-    min-width: 120%;
+    width: 100%;
+    max-width: 100%;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -1876,17 +1895,13 @@ footer {
   text-align: center;
   background: #222;
   color: #fff;
-  width: 1500px;
+  max-width: 100%;
 }
 
 /* Responsive Design for Forum */
 @media (max-width: 1024px) {
-    body{
-        max-width: 100%;
-        max-height: 100%;
-   }
     .container {
-        max-width: 1000px;
+        max-width: 100%;
         margin: 0 0;
         padding: 0 0.5rem;
     }
@@ -1909,7 +1924,7 @@ footer {
         min-width: 100%;
     }
     footer {
-        width: 1000px;
+        max-width: 100%;
     }
     .forum-content {
         grid-template-columns: 1fr;
@@ -1941,15 +1956,36 @@ footer {
 
         min-width: 100%;
     }
+    .forum-sidebar {
+        position: static;   
+        width: 100%;
+    }
+    .popup-content {
+        width: 95%;
+        height: 80%;
+        padding: 15px;
+    }
+    .popup-images img {
+        max-width: 90vw;
+        height: auto;
+    }
+    .forum-questions {
+        margin-left: 0; 
+        padding: 0 1rem;
+    }
+    .forum-mobile-controls .btn {
+        width: 100%;     
+    }
     .listings-content {
-        width: 1000px;
+        width: 100%;      
+        max-width: 1000px;
     }
     footer {
-        width: 1000px;
+        max-width: 100%;
     }
     .forum-content {
         grid-template-columns: 1fr;
-        width: 100%;
+        max-width: 100%;
     }
     .content-layout {
         display: flex;
@@ -2017,7 +2053,8 @@ footer {
     }
     .container {
         padding: 0 0.5rem;
-        width: 1000px;
+        width: 100%;
+        max-width: 1000px;
     }
     .hostel-title{
         font-size: 1.5rem;
@@ -2033,6 +2070,12 @@ footer {
     }
 }
 
+@media (max-width: 500px) {
+    .modal .modal-content {
+        max-width: 95%;
+        padding: 1rem;
+    }
+
 @media (max-width: 480px) {
     .hostel-title{
         font-size: 1.5rem;
@@ -2047,11 +2090,13 @@ footer {
         font-size: 1rem;
     }
     .listings-content {
-        width: 1000px;
+        width: 100%; 
+        max-width: 100%;
     }
     footer {
-        width: 1000px;
+        max-width: 100%;
     }
+
     .question-card {
 
         max-width: 100%;
@@ -2076,10 +2121,14 @@ footer {
         font-size: 1.5rem;
     }
     .community-forum {
-        width: 1000px; 
+        width: 100%; 
+        max-width: 100%;
     }
     .container {
         padding: 0 0.5rem;
-        width: 1000px;
+        width: 100%;
+        max-width: 100%;
     }
+}
+
 }
